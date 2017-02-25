@@ -8,7 +8,7 @@ Using the new Express 4.0 Router to build an API for Simple Budgeting
 
 ## Installation
 
-- Clone the repo: `git clone https://github.com/VinodhThiagarajan1309/api-bilancio.git`
+- Clone the repo: `git clone https://github.com/priyasuriyamurthi/api-bilancio.git`
 - Install dependencies: `npm install`
 - Start the server: `node server.js`
 
