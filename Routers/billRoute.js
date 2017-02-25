@@ -68,12 +68,17 @@ billRouter.route('/bills/:bill_id')
 
 	// update the bill with this id
 	.put(function(req, res) {
-		Bill.findById(req.params.bill_id, function(err, bill) {
+		Bill.findById(req.params._id, function(err, bill) {
 
 			if (err)
 				res.send(err);
 
-			bill.name = req.body.name;
+            bill.person = req.body.person;  // set the bills name (comes from the request)
+            bill.Date = req.body.Date;
+            bill.billType = req.body.billType;
+            bill.itemAmount = req.body.itemAmount;
+            bill.Description = req.body.Description;
+            bill.comments = req.body.comments;
 			bill.save(function(err) {
 				if (err)
 					res.send(err);
