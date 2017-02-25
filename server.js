@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 var port     = process.env.PORT || 8080; // set our port
 
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://ec2-54-84-88-85.compute-1.amazonaws.com:27017/billAPI'); // connect to our database
+mongoose.connect('mongodb://ec2-54-164-153-106.compute-1.amazonaws.com:27017/billAPI'); // connect to our database
 var Bill     = require('./app/models/bill');
 
 billRouter = require('./Routers/billRoute')(Bill);
