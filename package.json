@@ -1,0 +1,22 @@
+{
+  "name": "api-bilancio",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scotch-io/node-token-authentication"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Priya Suriyamurthi",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.11.2",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^4.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.8.4",
+    "morgan": "~1.0.0"
+  }
+}
