@@ -16,6 +16,21 @@ billRouter.use(function(req, res, next) {
 var billShellController = require('../controller/billShellController')(Bill,Login);
 billRouter.route('/bills')
 	.post(billShellController.post)
+    /**
+     * @swagger
+     * /api/bills:
+     *   get:
+     *     tags:
+     *       - Bills
+     *     description: Returns all Bills
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: An array of Bills
+     *         schema:
+     *           $ref: '#/definitions/Bills'
+     */
 	.get(billShellController.get);
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)

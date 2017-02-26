@@ -6,6 +6,10 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
+var swaggerJSDoc = require('swagger-jsdoc');
+
+app.use(express.static('public'))
+app.use(express.static('files'))
 
 // configure app
 app.use(morgan('dev')); // log requests to the console
@@ -35,4 +39,32 @@ app.use('/user', loginRouter);
 // =============================================================================
 app.listen(port,function(){
     console.log('Gulp is running my app on port: ' + port);
+});
+
+// swagger definition
+var swaggerDefinition = {
+    info: {
+        title: 'Bilancio API',
+        version: '1.0.0',
+        description: 'End Points Serving Bilancio Web Application',
+    },
+    host: 'localhost:3000',
+    basePath: '/',
+};
+
+// options for the swagger docs
+var options = {
+    // import swaggerDefinitions
+    swaggerDefinition: swaggerDefinition,
+    // path to the API docs
+    apis: ['./Routers/*.js'],
+};
+
+// initialize swagger-jsdoc
+var swaggerSpec = swaggerJSDoc(options);
+
+// serve swagger
+app.get('/swagger.json', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
 });
