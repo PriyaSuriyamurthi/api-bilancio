@@ -1,5 +1,5 @@
 var express = require('express');
-var routes = function(Bill,Login) {
+var billRoutes = function(Bill,Login) {
 // ROUTES FOR OUR API
 // =============================================================================
 
@@ -14,13 +14,19 @@ billRouter.use(function(req, res, next) {
 });
 
 var billShellController = require('../controller/billShellController')(Bill,Login);
-bookRouter.route('/bills')
-	.post(bookController.post)
-	.get(bookController.get);
+billRouter.route('/bills')
+	.post(billShellController.post)
+	.get(billShellController.get);
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 billRouter.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
 });
+
+//Login Controller for Post
+    var loginController = require('../controller/loginController')(Login);
+    billRouter.route('/login')
+        .post(loginController.post);
 
 
 // on routes that end in /bills/:bill_id
@@ -79,5 +85,5 @@ billRouter.route('/bills/:bill_id')
 	});
 	return billRouter;
 }
-module.exports = routes;
+module.exports = billRoutes;
 

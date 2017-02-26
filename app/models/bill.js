@@ -24,4 +24,5 @@ var BillShell = new Schema({
 	bills: [BillSchema]
 })
 
+
 module.exports = mongoose.model('Bill', BillShell);

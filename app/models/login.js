@@ -5,11 +5,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var LoginSchema = new Schema({
-    id:{type:String},
+    _id:{type:String},
     firstName:{type:String},
     lastName:{type:String},
-    email:{type:String},
-    personType:{type:String},
+    personType:{type:String, default:"user"},
     billShell:[]
 });
 

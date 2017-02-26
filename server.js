@@ -17,14 +17,19 @@ app.use(bodyParser.json());
 var port     = process.env.PORT || 8080; // set our port
 
 var mongoose   = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://ec2-54-164-153-106.compute-1.amazonaws.com:27017/billAPI'); // connect to our database
-var Bill     = require('./app/models/bill');
+var Bill  = require('./app/models/bill');
 var Login = require('./app/models/login');
 
+
 billRouter = require('./Routers/billRoute')(Bill,Login);
+loginRouter = require('./Routers/loginRoute')(Login);
+
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', billRouter);
+app.use('/user', loginRouter);
 
 // START THE SERVER
 // =============================================================================
