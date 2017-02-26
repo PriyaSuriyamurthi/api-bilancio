@@ -48,7 +48,7 @@ var swaggerDefinition = {
         version: '1.0.0',
         description: 'End Points Serving Bilancio Web Application',
     },
-    host: 'localhost:3000',
+    host: 'http://lowcost-env.tbm3pbiki7.us-east-1.elasticbeanstalk.com',
     basePath: '/',
 };
 
