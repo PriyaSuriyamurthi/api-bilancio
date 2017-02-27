@@ -1,7 +1,14 @@
 var loginController = function(Login) {
 
-// on routes that end in /bills
-// ----------------------------------------------------
+    var get = function(req,res) {
+        Login.find(function(err, logins) {
+            if (err)
+                res.send(err);
+
+            res.json(logins);
+        });
+    }
+
     var post = function(req,res) {
         // create a bill (accessed at POST http://localhost:8080/api/login)
 
@@ -21,7 +28,8 @@ var loginController = function(Login) {
         });
     }
     return {
-        post: post
+        post: post,
+        get: get
     }
 
 }

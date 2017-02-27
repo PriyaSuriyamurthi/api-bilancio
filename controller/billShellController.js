@@ -16,14 +16,14 @@ var billShellController = function(Bill,Login) {
 
            var bill = new Bill();		// create a new instance of the Bill model
             // set the bills name (comes from the request)
-            bill.owners.push(req.body.owners);
+            bill.owner= req.body.owner;
             bill.sheetName = req.body.sheetName;
             bill.save(function(err) {
                 if (err) {
                     res.send("Please try again later");
                 }
             });
-            Login.findByIdAndUpdate(req.body.owners,{$push:{billShell:bill._id}},
+            Login.update(req.body.owners,{$push:{billShell:bill._id}},
                 function(err) {
                 if (err) {
                     Bill.findOneAndRemove(bill._id, function (err) {

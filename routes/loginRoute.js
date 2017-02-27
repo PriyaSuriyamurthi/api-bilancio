@@ -15,7 +15,8 @@ var loginRoutes = function(Login) {
 //Login Controller for Post
     var loginController = require('../controller/loginController')(Login);
     loginRouter.route('/login')
-        .post(loginController.post);
+        .post(loginController.post)
+        .get(loginController.get);
 
     return loginRouter;
 }

@@ -3,26 +3,29 @@ var Schema       = mongoose.Schema;
 
 
 var BillSchema   = new Schema({
+	billShell_id:{type:String,required: true},
 	person : {type:String,required: true
     },
-	Date: {type:Date,default:Date.now},
+	date: {type:Date,default:Date.now},
 	itemAmount:{type:Number, default: 0.00,required: true
     },
 	billType:{type:String},
-	Description:{type:String},
+	description:{type:String},
 	comments:{type:String},
-	futureDate:{type:Boolean, default:false},
 	createdOn:{type:Date, default:Date.now},
-	updatedOn:{type:Date},
-	updatedBy:{type:String}
+	updatedOn:{type:Date, default:null},
+	updatedBy:{type:String, default:null}
 });
 
 var BillShell = new Schema({
-	owners: [],
+	owner: {type:String},
 	sheetName:{type:String},
-	creationDate:{type:Date,default:Date.now},
-	bills: [BillSchema]
+	creationDate:{type:Date,default:Date.now}
 })
 
-
-module.exports = mongoose.model('Bill', BillShell);
+var BillShell = mongoose.model('Bill', BillShell);
+var BillSchema = mongoose.model('BillSchema', BillSchema);
+module.exports =  {
+	BillShell : BillShell,
+    BillSchema : BillSchema
+}
