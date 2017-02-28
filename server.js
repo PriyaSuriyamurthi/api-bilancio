@@ -19,20 +19,20 @@ var port     = process.env.PORT || 8080; // set our port
 var mongoose   = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://ec2-54-164-153-106.compute-1.amazonaws.com:27017/billAPI'); // connect to our database
-var Bill  = require('./app/models/bill').BillShell;
-var BillSchema = require('./app/models/bill').BillSchema;
+var Bill  = require('./app/models/bill');
+var BillSchema = require('./app/models/billSchema');
 var Login = require('./app/models/login');
 
 
-billRouter = require('./routes/billShellRoute')(Bill,Login);
-loginRouter = require('./routes/loginRoute')(Login);
-billSchemaRouter = require('./routes/billSchemaRoute')(BillSchema);
+billRoute = require('./routes/billShellRoute')(Bill,Login,BillSchema);
+loginRoute = require('./routes/loginRoute')(Login);
+
 
 
 // REGISTER OUR ROUTES -------------------------------
-app.use('/api', billRouter);
-app.use('/user', loginRouter);
-app.use('/api/billshell', billSchemaRouter);
+app.use('/api', billRoute);
+app.use('/user', loginRoute);
+
 
 // START THE SERVER
 // =============================================================================

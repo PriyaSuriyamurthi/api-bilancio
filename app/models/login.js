@@ -5,11 +5,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var LoginSchema = new Schema({
-    _id:{type:String},
+    email_id:{type:String},
     firstName:{type:String},
     lastName:{type:String},
-    personType:{type:String, default:"user"},
-    billShell:[]
+    personType:{type:String, default:"user"}
 });
 
 module.exports = mongoose.model('Login', LoginSchema);

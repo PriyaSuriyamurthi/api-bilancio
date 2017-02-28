@@ -16,9 +16,10 @@ var loginController = function(Login) {
 
         // create a new instance of the Login model
         // set the bills name (comes from the request)
-        login._id = req.body._id;
+        login.email_id = req.body.email_id;
         login.firstName = req.body.firstName;
         login.lastName = req.body.lastName;
+        login.personType = req.body.personType;
         login.save(function(err) {
             if (err) {
                 res.send("LOGIN_ERROR");

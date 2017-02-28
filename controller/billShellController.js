@@ -2,10 +2,13 @@ var billShellController = function(Bill,Login) {
     // get all the bills (accessed at GET http://localhost:8080/api/bills)
     var get = function(req,res) {
         Bill.find(function(err, billshell) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            res.json(billshell);
+            } else if(billshell) {
+                res.json(billshell);
+            } else {
+                res.send("No Bill Shell Found");
+            }
         });
     }
 // on routes that end in /bills
@@ -17,32 +20,16 @@ var billShellController = function(Bill,Login) {
            var bill = new Bill();		// create a new instance of the Bill model
             // set the bills name (comes from the request)
             bill.owner= req.body.owner;
+            bill.login_id = req.body.login_id;
             bill.sheetName = req.body.sheetName;
             bill.save(function(err) {
                 if (err) {
                     res.send("Please try again later");
+                } else {
+                    res.send({message: 'BillShell created for the User!'});
                 }
             });
-            Login.update(req.body.owners,{$push:{billShell:bill._id}},
-                function(err) {
-                if (err) {
-                    Bill.findOneAndRemove(bill._id, function (err) {
-                        if (err) {
-                            res.send(err);
-                        }
-                        res.send({message: 'Problem while linking billShell with User!'});
-                    });
-                }
-                else {
-                    res.json({message: 'BillShell created and Linked with User account!'});
-                }
-            })
-
-                }
-
-
-
-
+    }
     return {
             post: post,
             get:get

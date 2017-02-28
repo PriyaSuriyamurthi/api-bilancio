@@ -2,15 +2,19 @@
  * Created by priyasuriyamurthi on 2/26/17.
  */
 var billSchemaController = function(BillSchema) {
+
     var post = function(req,res) {
-        BillSchema.billShell_id = req.body.billShell_id;
-        BillSchema.person = req.body.person;
-        BillSchema.date = req.body.date;
-        BillSchema.itemAmount = req.body.itemAmount;
-        BillSchema.billType = req.body.billType;
-        BillSchema.description = req.body.description;
-        BillSchema.comments = req.body.comments;
-        BillSchema.save(function(err) {
+        var billschema = new BillSchema();
+        billschema.billShell_id = req.body.billShell_id;
+        billschema.person = req.body.person;
+        billschema.date = req.body.date;
+        billschema.itemAmount = req.body.itemAmount;
+        billschema.billType = req.body.billType;
+        billschema.description = req.body.description;
+        billschema.comments = req.body.comments;
+        billschema.createdOn = Date.now();
+        billschema.updatedBy =  req.body.person;
+        billschema.save(function(err) {
             if(err) {
                 res.send({message:"Error adding bills for BillSheet"});
             } else {
