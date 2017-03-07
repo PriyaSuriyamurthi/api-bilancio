@@ -26,7 +26,7 @@ var billShellController = function(Bill,Login) {
                 if (err) {
                     res.send("Please try again later");
                 } else {
-                    res.send({message: 'BillShell created for the User!'});
+                    res.json(bill);
                 }
             });
     }

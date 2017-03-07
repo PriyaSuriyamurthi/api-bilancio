@@ -24,7 +24,7 @@ var loginController = function(Login) {
             if (err) {
                 res.send("LOGIN_ERROR");
             } else {
-                res.json({message: 'LOGIN_CREATED!'});
+                res.json(login);
             }
         });
     }

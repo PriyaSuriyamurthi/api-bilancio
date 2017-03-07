@@ -18,7 +18,7 @@ var billSchemaController = function(BillSchema) {
             if(err) {
                 res.send({message:"Error adding bills for BillSheet"});
             } else {
-                res.send({message:"Bills created"});
+                res.json(billschema);
             }
         })
 
