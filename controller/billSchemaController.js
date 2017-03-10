@@ -24,7 +24,7 @@ var billSchemaController = function(BillSchema) {
 
     }
     var get = function(req,res) {
-        BillSchema.find(function(err,billSchema) {
+        BillSchema.find({billShell_id:req.params.billShell_id},function(err,billSchema) {
             if(err) {
                 res.send({message: "Error fetching Bills"});
             } else {
